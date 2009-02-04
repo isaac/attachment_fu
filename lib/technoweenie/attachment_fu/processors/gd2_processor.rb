@@ -44,7 +44,7 @@ module Technoweenie # :nodoc:
               w, h = [img.width, img.height] / size.to_s
               img.resize!(w, h, false)
             end
-            temp_paths.unshift random_tempfile_filename
+            temp_paths.unshift write_to_temp_file(filename)
             self.size = img.export(self.temp_path)
           end
 
