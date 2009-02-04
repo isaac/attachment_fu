@@ -29,12 +29,14 @@ class BasicTest < Test::Unit::TestCase
   end
   
   def test_should_sanitize_content_type
-    @attachment = Attachment.new :content_type => ' foo '
+    @attachment = Attachment.new
+    @attachment.content_type = ' foo '
     assert_equal 'foo', @attachment.content_type
   end
   
   def test_should_sanitize_filenames
-    @attachment = Attachment.new :filename => 'blah/foo.bar'
+    @attachment = Attachment.new
+    @attachment.filename = 'blah/foo.bar'
     assert_equal 'foo.bar',    @attachment.filename
 
     @attachment.filename = 'blah\\foo.bar'
@@ -51,7 +53,8 @@ class BasicTest < Test::Unit::TestCase
   end
   
   def test_should_convert_thumbnail_name
-    @attachment = FileAttachment.new :filename => 'foo.bar'
+    @attachment = FileAttachment.new
+    @attachment.filename = 'foo.bar'
     assert_equal 'foo.bar',           @attachment.thumbnail_name_for(nil)
     assert_equal 'foo.bar',           @attachment.thumbnail_name_for('')
     assert_equal 'foo_blah.bar',      @attachment.thumbnail_name_for(:blah)
